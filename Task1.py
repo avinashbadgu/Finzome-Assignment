@@ -1,4 +1,4 @@
-# File: calculate_volatility.py
+
 import pandas as pd
 import numpy as np
 
@@ -33,23 +33,22 @@ def calculate_annualized_volatility(daily_volatility, data_length):
 
 def main():
     try:
-        # Read data from CSV file with custom date parser
         data = pd.read_csv(r'D:\Finzome\stock_data.csv', parse_dates=['Date '], date_parser=custom_date_parser, dayfirst=True).rename(columns=lambda x: x.strip())
         print("Read CSV successful.")
         print("Columns in the loaded data:", data.columns)
         print("Sample data:", data.head())
 
-        # Calculate daily returns
+        
         daily_returns = calculate_daily_returns(data)
 
-        # Calculate daily volatility
+        
         daily_volatility = calculate_daily_volatility(daily_returns)
 
-        # Calculate annualized volatility
+        
         data_length = len(data)
         annualized_volatility = calculate_annualized_volatility(daily_volatility, data_length)
 
-        # Print results
+       
         print(f"Daily Volatility: {daily_volatility:.4f}")
         print(f"Annualized Volatility: {annualized_volatility:.4f}")
 
